@@ -11,9 +11,9 @@ O sistema deverá ser capaz de realizar as seguintes operações:
 - **Ler** registros: Deverá ser possível consultar os registros por data, tipo ou valor.
 - **Atualizar** registros: No caso de atualização, pode-se atualizar o valor, o tipo e a data deverá ser a de atualização do registro.
 - **Deletar**: Deverá ser possível deletar o registro (caso necessário, considere o indice do elemento como ID)
-- Crie uma função que atualize os valores de rendimento sempre que chamada
-- Crie uma função exportar_relatorio, que seja possível exportar um relatorio final em csv ou json .
-- Crie pelo menos uma função de agrupamento, que seja capaz de mostrar o total de valor baseado em alguma informação (mes, tipo...)
+- Crie uma função que atualize os vel exportar um relatorio final em csv ou json .
+- Crie pelo menos alores de rendimento sempre que chamada
+- Crie uma função exportar_relatorio, que seja possívuma função de agrupamento, que seja capaz de mostrar o total de valor baseado em alguma informação (mes, tipo...)
 - Crie valores separados para identificar a data (dia, mes, ano)
 
 ---
