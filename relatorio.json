@@ -14,3 +14,18 @@
     "0": 0
   }
 }
+{
+  "registros": [
+    {
+      "tipo": "investimento",
+      "valor": 7000,
+      "data": "2024-01-15",
+      "dia": 10,
+      "mes": 1,
+      "ano": 2024
+    }
+  ],
+  "rendimentos": {
+    "0": 0
+  }
+}
