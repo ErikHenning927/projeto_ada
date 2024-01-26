@@ -1,6 +1,0 @@
-registros,rendimentos
-"[{'tipo': 'investimento', 'valor': 7000, 'data': datetime.datetime(2024, 1, 15, 0, 0), 'dia': 10, 'mes': 1, 'ano': 2024}]",{0: 0}
-"[{'tipo': 'investimento', 'valor': 7000, 'data': datetime.datetime(2024, 1, 15, 0, 0), 'dia': 10, 'mes': 1, 'ano': 2024}]",{0: 0}
-"[{'tipo': 'investimento', 'valor': 7000, 'data': datetime.datetime(2024, 1, 15, 0, 0), 'dia': 10, 'mes': 1, 'ano': 2024}]",{0: 0}
-"[{'tipo': 'receita', 'valor': 8000.0, 'data': datetime.datetime(2024, 1, 24, 0, 0), 'dia': 24, 'mes': 1, 'ano': 2024}]",{}
-"[{'tipo': 'receita', 'valor': 8000.0, 'data': datetime.datetime(2024, 1, 24, 0, 0), 'dia': 24, 'mes': 1, 'ano': 2024}]",{}

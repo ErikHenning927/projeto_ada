@@ -4,8 +4,10 @@ from datetime import datetime, timedelta
 
 registros = []
 rendimentos = {}
+id_atual = 0 
 
 def criar_registro(data, tipo, valor):
+    global id_atual
     if tipo not in ['receita', 'despesa', 'investimento']:
         print("Tipo inválido, os tipos válidos são: receita, despesa e investimento.")
         return 
@@ -14,19 +16,27 @@ def criar_registro(data, tipo, valor):
         valor = -valor
 
     registro = {
-        'tipo' : tipo,
-        'valor' : valor,
-        'data' : data,
-        'dia' : data.day,
-        'mes' : data.month,
-        'ano' : data.year,
+        'id': id_atual,
+        'tipo': tipo,
+        'valor': valor,
+        'data': data,
+        'dia': data.day,
+        'mes': data.month,
+        'ano': data.year,
     }
 
     if tipo == 'investimento':
         registro['montante'] = valor
-        rendimentos[len(registros)] = 0
+        rendimentos[id_atual] = 0
 
     registros.append(registro)
+    id_atual += 1
+def encontrar_indice_por_id(registro_id):
+    for indice, registro in enumerate(registros):
+        if registro['id'] == registro_id:
+            return indice
+    return None
+
 
 def ler_registros(filtro=None, campo=None):
     if filtro is None or campo is None:
@@ -53,17 +63,19 @@ def organizar_por(chave):
 
     return grupos
 
-def deletar_registro(indice):
-    if indice < 0 or indice >= len(registros):
-        print("Indice inválido.")
+def deletar_registro(registro_id):
+    indice = encontrar_indice_por_id(registro_id)
+    if indice is None:
+        print("ID inválido.")
         return
     if registros[indice]['tipo'] == 'investimento':
-        del rendimentos[indice]
+        del rendimentos[registro_id]
     del registros[indice]
 
-def atualizar_registro(indice, tipo=None, valor=None, data=None):
-    if indice < 0 or indice >= len(registros):
-        print ("Índice inválido.")
+def atualizar_registro(registro_id, tipo=None, valor=None, data=None):
+    indice = encontrar_indice_por_id(registro_id)
+    if indice is None:
+        print("ID inválido.")
         return
     
     registro = registros[indice]
@@ -76,18 +88,50 @@ def atualizar_registro(indice, tipo=None, valor=None, data=None):
         registro['data'] = data
     
     if registro['tipo'] == 'investimento':
-        rendimentos[indice] = 0
+        rendimentos[registro_id] = 0
 
 
+# def atualizar_rendimentos():
+#     for indice, registro in enumerate(registros):
+#         if registro['tipo'] == 'investimento':
+#             montante = registro['montante']
+#             taxa_diaria = 0.418 / 100
+#             dias_passados = (datetime.now() - registro['data']).days
+#             rendimento = montante * (1 + taxa_diaria) ** dias_passados
+#             rendimento[registro['id']] = rendimento - montante
+        
 def atualizar_rendimentos():
     for indice, registro in enumerate(registros):
         if registro['tipo'] == 'investimento':
             montante = registro['montante']
-            taxa_diaria = 0.418
+            taxa_diaria = 0.418 / 100
             dias_passados = (datetime.now() - registro['data']).days
-            rendimento = montante * (1 + taxa_diaria) ** dias_passados
-            rendimento[indice] = rendimento - montante
+            rendimento = montante * ((1 + taxa_diaria) ** dias_passados) - montante
+            rendimentos[registro['id']] = rendimento
 
+# def exportar_relatorio(formato='json'):
+#     if formato not in ['json', 'csv']:
+#         print("Formato de exportação inválido. Formatos válidos: json e csv")
+#         return
+    
+#     relatorio = {'registros': registros, 'rendimentos': rendimentos}
+
+#     if formato == 'json':
+#         def converter_datetime(obj):
+#             if isinstance(obj, datetime):
+#                 return obj.strftime('%Y-%m-%d')
+#             raise TypeError("Não é serializado")
+        
+#         with open('relatorio.json', 'a') as file:
+#             file.write('\n')
+#             json.dump(relatorio, file, indent=2, default=converter_datetime)
+
+#     elif formato == 'csv':
+#         with open('relatorio.csv', 'a', newline='') as file:
+#             writer = csv.DictWriter(file, fieldnames=relatorio.keys())
+#             if file.tell() == 0:
+#                 writer.writeheader()
+#             writer.writerow(relatorio)
 def exportar_relatorio(formato='json'):
     if formato not in ['json', 'csv']:
         print("Formato de exportação inválido. Formatos válidos: json e csv")
@@ -101,61 +145,62 @@ def exportar_relatorio(formato='json'):
                 return obj.strftime('%Y-%m-%d')
             raise TypeError("Não é serializado")
         
-        with open('relatorio.json', 'a') as file:
-            file.write('\n')
+        with open('relatorio.json', 'w') as file: 
             json.dump(relatorio, file, indent=2, default=converter_datetime)
 
     elif formato == 'csv':
-        with open('relatorio.csv', 'a', newline='') as file:
+        with open('relatorio.csv', 'w', newline='') as file: 
             writer = csv.DictWriter(file, fieldnames=relatorio.keys())
-            if file.tell() == 0:
-                writer.writeheader()
+            writer.writeheader()
             writer.writerow(relatorio)
 
-data_registro = datetime(2024, 1, 10)
-criar_registro(data_registro, 'receita', 3500)
 
-print(ler_registros())
+#Comentei os testes
 
-atualizar_rendimentos()
+# data_registro = datetime(2024, 1, 10)
+# criar_registro(data_registro, 'receita', 3500)
 
-data_registro = datetime(2024, 1, 15)
+# print(ler_registros())
 
-print ("\norganizar por tipo 1")
-print (organizar_por('tipo'))
+# atualizar_rendimentos()
 
-atualizar_registro(0, valor=7000)
-atualizar_registro(0, data=data_registro)
-atualizar_registro(0, tipo='investimento')
+# data_registro = datetime(2024, 1, 15)
 
-print("\nExportando relatório em CSV:")
-exportar_relatorio('csv')
+# print ("\norganizar por tipo 1")
+# print (organizar_por('tipo'))
 
-print("\nExportando relatório em JSON:")
-exportar_relatorio('json')
+# atualizar_registro(0, valor=7000)
+# atualizar_registro(0, data=data_registro)
+# atualizar_registro(0, tipo='investimento')
 
-data_consulta = datetime(2024, 1, 15)
-tipo_consulta = 'investimento'
-valor_consulta = 7000
+# print("\nExportando relatório em CSV:")
+# exportar_relatorio('csv')
 
-print ("\norganizar por tipo 2")
-print (organizar_por('tipo'))
+# print("\nExportando relatório em JSON:")
+# exportar_relatorio('json')
+
+# data_consulta = datetime(2024, 1, 15)
+# tipo_consulta = 'investimento'
+# valor_consulta = 7000
+
+# print ("\norganizar por tipo 2")
+# print (organizar_por('tipo'))
 
 
-print(ler_registros())
+# print(ler_registros())
 
-print ("\nConsulta por data:")
-resultados_por_data = consultar_por_data(data_consulta)
-print (resultados_por_data)
+# print ("\nConsulta por data:")
+# resultados_por_data = consultar_por_data(data_consulta)
+# print (resultados_por_data)
 
-print ("\nConsulta por tipo:")
-resultados_por_tipo = consultar_por_tipo(tipo_consulta)
-print (resultados_por_tipo)
+# print ("\nConsulta por tipo:")
+# resultados_por_tipo = consultar_por_tipo(tipo_consulta)
+# print (resultados_por_tipo)
 
-print ("\nConsulta por valor:")
-resultados_por_valor = consultar_por_valor(valor_consulta)
-print (resultados_por_valor)
+# print ("\nConsulta por valor:")
+# resultados_por_valor = consultar_por_valor(valor_consulta)
+# print (resultados_por_valor)
 
-deletar_registro(0)
+# deletar_registro(0)
 
-print(ler_registros())
+# print(ler_registros())
