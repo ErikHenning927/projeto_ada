@@ -34,20 +34,29 @@ O arquivo `main.py` é o núcleo da aplicação, responsável por manter uma lis
 2. **Ler Registros:**
    - Utiliza a função `ler_registros` do módulo `main` para exibir todos os registros existentes.
 
-3. **Atualizar Rendimentos:**
+3. **Atualizar registro:**
+   - Permite atualizar o valor, tipo ou data de um registro.
+   - Utiliza a função `atualizar_registro` do módulo `main` para atualizar um registro.
+
+4. **Atualizar Rendimentos:**
    - Utiliza a função `atualizar_rendimentos` do módulo `main` para calcular e atualizar os rendimentos dos investimentos.
 
-4. **Exportar Relatório:**
+5. **Exportar Relatório:**
    - Permite exportar o conjunto atual de registros e rendimentos em formato JSON ou CSV.
    - Utiliza a função `exportar_relatorio` do módulo `main` para realizar a exportação.
 
-5. **Consultar por Data, Tipo e Valor:**
+6. **Consultar por Data, Tipo e Valor:**
    - Oferece opções para consultar registros com base na data, tipo e valor.
    - Utiliza as funções `consultar_por_data`, `consultar_por_tipo` e `consultar_por_valor` do módulo `main`.
 
-6. **Deletar Registro:**
+7. **Deletar Registro:**
    - Permite deletar um registro específico com base no ID informado pelo usuário.
    - Utiliza a função `deletar_registro` do módulo `main` para realizar a exclusão.
+
+8. **Agrupar por mês:**
+   - Permite consultar valor total de registros por mês.
+   - Utiliza a função `agrupar_por_mes` do módulo `main` para realizar a soma.
+
 
 ## Como Executar a Aplicação
 
