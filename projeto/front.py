@@ -76,6 +76,7 @@ def main_menu():
         elif escolha == '2':
             print(main.ler_registros())
         elif escolha == '3':
+            print('Rendimentos atualizados! ')
             main.atualizar_rendimentos()
         elif escolha == '4':
             main.exportar_relatorio('csv')
