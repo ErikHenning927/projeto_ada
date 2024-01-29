@@ -6,6 +6,9 @@ registros = []
 rendimentos = {}
 id_atual = 0 
 
+
+
+
 def criar_registro(data, tipo, valor):
     global id_atual
     if tipo not in ['receita', 'despesa', 'investimento']:
@@ -63,6 +66,16 @@ def organizar_por(chave):
 
     return grupos
 
+def agrupar_por_mes():
+    total_mes = {}
+    for registro in registros:
+        mes_chave = registro['ano'], registro['mes']
+        if mes_chave not in total_mes:
+            total_mes[mes_chave] = 0
+        total_mes[mes_chave] += registro['valor']
+    return total_mes
+
+
 def deletar_registro(registro_id):
     indice = encontrar_indice_por_id(registro_id)
     if indice is None:
@@ -71,6 +84,8 @@ def deletar_registro(registro_id):
     if registros[indice]['tipo'] == 'investimento':
         del rendimentos[registro_id]
     del registros[indice]
+
+
 
 def atualizar_registro(registro_id, tipo=None, valor=None, data=None):
     indice = encontrar_indice_por_id(registro_id)
@@ -90,15 +105,6 @@ def atualizar_registro(registro_id, tipo=None, valor=None, data=None):
     if registro['tipo'] == 'investimento':
         rendimentos[registro_id] = 0
 
-
-# def atualizar_rendimentos():
-#     for indice, registro in enumerate(registros):
-#         if registro['tipo'] == 'investimento':
-#             montante = registro['montante']
-#             taxa_diaria = 0.418 / 100
-#             dias_passados = (datetime.now() - registro['data']).days
-#             rendimento = montante * (1 + taxa_diaria) ** dias_passados
-#             rendimento[registro['id']] = rendimento - montante
         
 def atualizar_rendimentos():
     for indice, registro in enumerate(registros):
@@ -109,34 +115,12 @@ def atualizar_rendimentos():
             rendimento = montante * ((1 + taxa_diaria) ** dias_passados) - montante
             rendimentos[registro['id']] = rendimento
 
-# def exportar_relatorio(formato='json'):
-#     if formato not in ['json', 'csv']:
-#         print("Formato de exportação inválido. Formatos válidos: json e csv")
-#         return
-    
-#     relatorio = {'registros': registros, 'rendimentos': rendimentos}
 
-#     if formato == 'json':
-#         def converter_datetime(obj):
-#             if isinstance(obj, datetime):
-#                 return obj.strftime('%Y-%m-%d')
-#             raise TypeError("Não é serializado")
-        
-#         with open('relatorio.json', 'a') as file:
-#             file.write('\n')
-#             json.dump(relatorio, file, indent=2, default=converter_datetime)
-
-#     elif formato == 'csv':
-#         with open('relatorio.csv', 'a', newline='') as file:
-#             writer = csv.DictWriter(file, fieldnames=relatorio.keys())
-#             if file.tell() == 0:
-#                 writer.writeheader()
-#             writer.writerow(relatorio)
 def exportar_relatorio(formato='json'):
     if formato not in ['json', 'csv']:
         print("Formato de exportação inválido. Formatos válidos: json e csv")
         return
-    
+
     relatorio = {'registros': registros, 'rendimentos': rendimentos}
 
     if formato == 'json':
@@ -144,15 +128,21 @@ def exportar_relatorio(formato='json'):
             if isinstance(obj, datetime):
                 return obj.strftime('%Y-%m-%d')
             raise TypeError("Não é serializado")
-        
+
         with open('relatorio.json', 'w') as file: 
             json.dump(relatorio, file, indent=2, default=converter_datetime)
 
     elif formato == 'csv':
         with open('relatorio.csv', 'w', newline='') as file: 
-            writer = csv.DictWriter(file, fieldnames=relatorio.keys())
+            fieldnames = ['id', 'tipo', 'valor', 'data', 'dia', 'mes', 'ano', 'montante']
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerow(relatorio)
+
+            for registro in relatorio['registros']:
+                registro_para_escrever = {field: registro.get(field, '') for field in fieldnames}
+                writer.writerow(registro_para_escrever)
+
+            file.write('\n')
 
 
 #Comentei os testes
