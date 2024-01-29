@@ -7,12 +7,29 @@ gerar.gerar_registros_aleatorios(10)
 
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
+
 def solicitar_registro():
     limpar_tela()
-    tipo = input("Informe o tipo (receita, despesa ou investimento): ")
-    valor = float(input("Informe o valor: "))
+
+    tipos_validos = ['receita', 'despesa', 'investimento']
+
+    tipo = input("Informe o tipo (receita, despesa ou investimento): ").lower()
+    if tipo not in tipos_validos:
+        print("Tipo inválido. Tipos válidos são: {}".format(', '.join(tipos_validos)))
+        return
+
+    try:
+        valor = float(input("Informe o valor: "))
+    except ValueError:
+        print("Valor inválido. Certifique-se de fornecer um número.")
+        return
+
     data_str = input("Informe a data no formato YYYY-MM-DD: ")
-    data = datetime.strptime(data_str, '%Y-%m-%d')
+    try:
+        data = datetime.strptime(data_str, '%Y-%m-%d')
+    except ValueError:
+        print("Formato de data inválido. Certifique-se de seguir o formato YYYY-MM-DD.")
+        return
     
     main.criar_registro(data, tipo, valor)
 
