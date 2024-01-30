@@ -54,15 +54,6 @@ def consultar_por_tipo(tipo):
 def consultar_por_valor(valor):
     return [registro for registro in registros if registro['valor'] == valor]
 
-def organizar_por(chave):
-    grupos = {}
-    for registro in registros:
-        valor = registro[chave]
-        if valor not in grupos:
-            grupos[valor] = 0
-        grupos[valor] += registro['valor']
-
-    return grupos
 
 def agrupar_por_mes():
     total_mes = {}
