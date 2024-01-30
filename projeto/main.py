@@ -7,8 +7,6 @@ rendimentos = {}
 id_atual = 0 
 
 
-
-
 def criar_registro(data, tipo, valor):
     global id_atual
     if tipo not in ['receita', 'despesa', 'investimento']:

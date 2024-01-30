@@ -69,7 +69,7 @@ def main_menu():
         print("11. Atualizar registro")
         print("0. Sair")
 
-        escolha = input("Escolha a opção desejada (0-9): ")
+        escolha = input("Escolha a opção desejada (0-11): ")
         limpar_tela()
         if escolha == '1':
             solicitar_registro()    

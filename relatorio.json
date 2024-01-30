@@ -1,0 +1,215 @@
+{
+  "registros": [
+    {
+      "id": 0,
+      "tipo": "investimento",
+      "valor": 6000.0,
+      "data": "2019-02-02",
+      "dia": 24,
+      "mes": 8,
+      "ano": 2023,
+      "montante": 5524.03
+    },
+    {
+      "id": 1,
+      "tipo": "investimento",
+      "valor": 4609.28,
+      "data": "2023-09-16",
+      "dia": 16,
+      "mes": 9,
+      "ano": 2023,
+      "montante": 4609.28
+    },
+    {
+      "id": 2,
+      "tipo": "investimento",
+      "valor": 9015.67,
+      "data": "2023-12-01",
+      "dia": 1,
+      "mes": 12,
+      "ano": 2023,
+      "montante": 9015.67
+    },
+    {
+      "id": 3,
+      "tipo": "investimento",
+      "valor": 2338.52,
+      "data": "2023-01-01",
+      "dia": 1,
+      "mes": 1,
+      "ano": 2023,
+      "montante": 2338.52
+    },
+    {
+      "id": 4,
+      "tipo": "despesa",
+      "valor": 6742.8,
+      "data": "2023-08-26",
+      "dia": 26,
+      "mes": 8,
+      "ano": 2023
+    },
+    {
+      "id": 5,
+      "tipo": "investimento",
+      "valor": 6354.95,
+      "data": "2023-08-16",
+      "dia": 16,
+      "mes": 8,
+      "ano": 2023,
+      "montante": 6354.95
+    },
+    {
+      "id": 6,
+      "tipo": "investimento",
+      "valor": 4877.5,
+      "data": "2023-02-09",
+      "dia": 9,
+      "mes": 2,
+      "ano": 2023,
+      "montante": 4877.5
+    },
+    {
+      "id": 7,
+      "tipo": "receita",
+      "valor": 1240.44,
+      "data": "2023-07-08",
+      "dia": 8,
+      "mes": 7,
+      "ano": 2023
+    },
+    {
+      "id": 8,
+      "tipo": "despesa",
+      "valor": 2672.39,
+      "data": "2023-11-04",
+      "dia": 4,
+      "mes": 11,
+      "ano": 2023
+    },
+    {
+      "id": 9,
+      "tipo": "receita",
+      "valor": 6122.85,
+      "data": "2023-04-23",
+      "dia": 23,
+      "mes": 4,
+      "ano": 2023
+    },
+    {
+      "id": 10,
+      "tipo": "receita",
+      "valor": 3819.72,
+      "data": "2023-06-09",
+      "dia": 9,
+      "mes": 6,
+      "ano": 2023
+    },
+    {
+      "id": 11,
+      "tipo": "investimento",
+      "valor": 8156.0,
+      "data": "2023-09-02",
+      "dia": 2,
+      "mes": 9,
+      "ano": 2023,
+      "montante": 8156.0
+    },
+    {
+      "id": 12,
+      "tipo": "receita",
+      "valor": 132.5,
+      "data": "2023-11-15",
+      "dia": 15,
+      "mes": 11,
+      "ano": 2023
+    },
+    {
+      "id": 13,
+      "tipo": "despesa",
+      "valor": 7098.88,
+      "data": "2023-02-09",
+      "dia": 9,
+      "mes": 2,
+      "ano": 2023
+    },
+    {
+      "id": 14,
+      "tipo": "receita",
+      "valor": 9096.04,
+      "data": "2023-07-02",
+      "dia": 2,
+      "mes": 7,
+      "ano": 2023
+    },
+    {
+      "id": 15,
+      "tipo": "receita",
+      "valor": 7800.95,
+      "data": "2023-10-08",
+      "dia": 8,
+      "mes": 10,
+      "ano": 2023
+    },
+    {
+      "id": 16,
+      "tipo": "receita",
+      "valor": 2075.76,
+      "data": "2023-05-10",
+      "dia": 10,
+      "mes": 5,
+      "ano": 2023
+    },
+    {
+      "id": 17,
+      "tipo": "investimento",
+      "valor": 1538.3,
+      "data": "2023-03-24",
+      "dia": 24,
+      "mes": 3,
+      "ano": 2023,
+      "montante": 1538.3
+    },
+    {
+      "id": 18,
+      "tipo": "despesa",
+      "valor": 5889.49,
+      "data": "2023-12-05",
+      "dia": 5,
+      "mes": 12,
+      "ano": 2023
+    },
+    {
+      "id": 19,
+      "tipo": "investimento",
+      "valor": 8110.22,
+      "data": "2023-01-04",
+      "dia": 4,
+      "mes": 1,
+      "ano": 2023,
+      "montante": 8110.22
+    },
+    {
+      "id": 20,
+      "tipo": "investimento",
+      "valor": 2000.0,
+      "data": "2020-05-05",
+      "dia": 5,
+      "mes": 5,
+      "ano": 2020,
+      "montante": 2000.0
+    }
+  ],
+  "rendimentos": {
+    "0": 11033528.866078097,
+    "1": 3485.3068802586567,
+    "2": 2515.6887320069654,
+    "3": 9708.706430263215,
+    "5": 6345.8864844440695,
+    "6": 16477.134097609192,
+    "11": 7028.509175088107,
+    "17": 4090.7939684832145,
+    "19": 33151.176012644784,
+    "20": 589572.4176366637
+  }
+}
